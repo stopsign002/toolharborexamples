@@ -1,0 +1,17 @@
+{
+  "slug": "hello-static",
+  "name": "Hello Static",
+  "description": "Static tool: tool-store round-trip + a declared upstream",
+  "icon": "📝",
+  "type": "static",
+  "static": { "root": "app" },
+  "settings": [
+    { "key": "DEMO_KEY", "label": "Demo key", "secret": true, "required": false, "default": "demo" }
+  ],
+  "upstreams": {
+    "echo": {
+      "baseUrl": "https://httpbin.org/",
+      "headers": { "X-Demo-Key": "${DEMO_KEY}" }
+    }
+  }
+}

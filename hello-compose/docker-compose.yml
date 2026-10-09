@@ -1,0 +1,21 @@
+# Hello Compose — Toolhub compose-tier example.
+#
+# At install the portal writes override.yml next to this file and runs
+#   docker compose -p chtest-hello-compose -f docker-compose.yml -f override.yml up -d --build
+# The override adds container_name/env_file/labels/restart to every
+# service, and attaches `networks: [web, default]` to EVERY service too —
+# not just the manifest's webService — so `worker` can reach Postgres
+# (host `postgres`, on the `web` network) with no networks: of its own.
+# Declaring `web` here yourself would be harmless but redundant, so this
+# file declares none.
+#
+# No `ports:` anywhere — the portal reaches `api` over the `web` network by
+# its container name, and nothing here needs to be reachable from the host.
+services:
+  api:
+    build:
+      context: ./api
+
+  worker:
+    build:
+      context: ./worker

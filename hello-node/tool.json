@@ -1,0 +1,14 @@
+{
+  "slug": "hello-node",
+  "name": "Hello Node",
+  "description": "Container tool: verified identity headers + its own Postgres schema",
+  "icon": "🧪",
+  "type": "container",
+  "container": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "port": 3000,
+    "healthPath": "/health"
+  },
+  "db": true
+}

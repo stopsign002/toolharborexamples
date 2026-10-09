@@ -1,0 +1,14 @@
+{
+  "slug": "hello-compose",
+  "name": "Hello Compose",
+  "description": "Compose tool: a web service and a background worker sharing one schema",
+  "icon": "💓",
+  "type": "compose",
+  "compose": {
+    "file": "docker-compose.yml",
+    "webService": "api",
+    "port": 3000,
+    "healthPath": "/health"
+  },
+  "db": true
+}

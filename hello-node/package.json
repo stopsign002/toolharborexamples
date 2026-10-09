@@ -1,0 +1,9 @@
+{
+  "name": "hello-node",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "express": "4.19.2",
+    "pg": "8.11.5"
+  }
+}
