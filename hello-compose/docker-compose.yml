@@ -1,4 +1,4 @@
-# Hello Compose — Toolhub compose-tier example.
+# Hello Compose — ToolHarbor compose-tier example.
 #
 # At install the portal writes override.yml next to this file and runs
 #   docker compose -p chtest-hello-compose -f docker-compose.yml -f override.yml up -d --build

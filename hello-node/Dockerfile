@@ -1,4 +1,4 @@
-# Hello Node — Toolhub container-tier example.
+# Hello Node — ToolHarbor container-tier example.
 # node:22-alpine, express+pg, runs as the built-in non-root `node` user.
 FROM node:22-alpine
 WORKDIR /app

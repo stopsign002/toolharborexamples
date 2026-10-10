@@ -1,4 +1,4 @@
-// Hello Node — Toolhub container-tier example.
+// Hello Node — ToolHarbor container-tier example.
 //
 // Demonstrates the two things every container/compose tool must get right:
 //   1. Verify the portal's identity headers yourself (never just trust
