@@ -25,10 +25,21 @@ app.get('/', async (_req, res) => {
   const at = rows[0] ? new Date(rows[0].at).toISOString() : '(none yet)';
   res.set('Content-Type', 'text/html').send(`<!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Hello Compose</title></head>
+<head>
+<meta charset="utf-8">
+<title>Hello Compose</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/toolkit/toolharbor.css">
+</head>
 <body>
-  <p>Latest heartbeat, written every 5s by the <code>worker</code> service:</p>
-  <p id="heartbeat">${at}</p>
+<div class="th-page">
+  <h1>Hello Compose</h1>
+  <div class="th-card th-stat">
+    <p class="th-muted">Latest heartbeat, written every 5s by the
+    <code>worker</code> service:</p>
+    <div class="th-stat-value" id="heartbeat">${at}</div>
+  </div>
+</div>
 </body>
 </html>`);
 });

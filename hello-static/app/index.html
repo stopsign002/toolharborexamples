@@ -5,44 +5,49 @@
 <title>Hello Static</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="/toolkit/toolharbor.css">
 </head>
 <body>
+<div class="th-page">
   <h1>Hello Static</h1>
   <p>
     This page is a ToolHarbor <strong>static</strong> tool. It is served under
     whatever path the portal mounts it at (normally <code>/t/hello-static/</code>)
-    and every URL on this page — the stylesheet, the script, every fetch
-    below — is written <em>relative to this document</em>, with no leading
-    slash. That is rule #1 for every tool: see
-    <code>docs/TOOL-AUTHORING.md</code> in the portal repo for why an
-    absolute <code>/x</code> URL breaks the moment a tool is installed.
+    and every URL on this page — the script and every fetch below — is
+    written <em>relative to this document</em>, with no leading slash. The
+    one exception is the stylesheet above: <code>/toolkit/toolharbor.css</code>
+    is one of the two absolute paths every tool is allowed to use (the other
+    is <code>/api/...</code>) — see <code>docs/TOOL-AUTHORING.md</code> §4
+    and §19 in the portal repo for why a plain <code>/x</code> URL breaks
+    the moment a tool is installed, and why the kit stylesheet is the
+    exception.
   </p>
 
-  <section>
+  <div class="th-card">
     <h2>1. Tool store round-trip</h2>
     <p>Saves and loads a note through the portal's per-tool key/value store
     (<code>GET|PUT /_store/:key</code>) — no SQL needed for something this
     small.</p>
-    <textarea id="note" rows="4" cols="60" placeholder="Type a note, then Save"></textarea>
-    <div class="row">
-      <button id="save" type="button">Save</button>
-      <button id="load" type="button">Load</button>
+    <textarea id="note" rows="4" placeholder="Type a note, then Save"></textarea>
+    <div class="th-row">
+      <button id="save" type="button" class="th-btn-primary">Save</button>
+      <button id="load" type="button" class="th-btn-secondary">Load</button>
     </div>
     <pre id="store-result"></pre>
-  </section>
+  </div>
 
-  <section>
+  <div class="th-card">
     <h2>2. Declared upstream</h2>
     <p>Calls <code>./_up/echo/get?x=1</code>, which the gateway proxies to
     <code>https://httpbin.org/get?x=1</code> with the <code>X-Demo-Key</code>
     header injected server-side from this tool's <code>DEMO_KEY</code>
     setting. The key is never sent to this page — httpbin echoing it back
     in the JSON below is the proof the header was added upstream, not here.</p>
-    <button id="up-call" type="button">Call echo upstream</button>
+    <button id="up-call" type="button" class="th-btn-primary">Call echo upstream</button>
     <pre id="up-result"></pre>
-  </section>
+  </div>
+</div>
 
-  <script type="module" src="./app.js"></script>
+<script type="module" src="./app.js"></script>
 </body>
 </html>

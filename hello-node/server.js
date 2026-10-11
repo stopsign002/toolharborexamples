@@ -85,15 +85,28 @@ app.get('/', verifyPortalHeaders, async (req, res) => {
     .join('\n    ');
   res.set('Content-Type', 'text/html').send(`<!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Hello Node</title></head>
+<head>
+<meta charset="utf-8">
+<title>Hello Node</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/toolkit/toolharbor.css">
+</head>
 <body>
-  <p id="whoami">Signed in as ${escapeHtml(req.portalUser)}${req.portalAdmin ? ' (admin)' : ''}</p>
-  <ul id="visits">
-    ${items}
-  </ul>
-  <form id="visit-form" method="post" action="visit">
-    <button id="visit-submit" type="submit">Log a visit</button>
-  </form>
+<div class="th-page">
+  <h1>Hello Node</h1>
+  <p class="th-muted" id="whoami">Signed in as ${escapeHtml(req.portalUser)}${req.portalAdmin ? ' (admin)' : ''}</p>
+
+  <div class="th-card">
+    <h2>Recent visits</h2>
+    ${rows.length ? '' : '<p class="th-empty">No visits yet.</p>'}
+    <ul id="visits">
+      ${items}
+    </ul>
+    <form id="visit-form" method="post" action="visit">
+      <button id="visit-submit" type="submit" class="th-btn-primary">Log a visit</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>`);
 });
