@@ -18,6 +18,21 @@ if (!TOKEN) {
   process.exit(1);
 }
 
+// --- DELIBERATELY BROKEN (branch `broken`) -------------------------------
+// This branch exists ONLY so ToolHarbor's automatic rollback (SPEC §22) can be
+// proven end to end: an update to a commit that does not come up has to retag
+// the previous image, rerun it, and report "rolled back to <sha>".
+//
+// It EXITS rather than answering 500 on /health, and that is the point: the
+// engine's health poll counts ANY HTTP response as alive (a tool whose health
+// path sits behind its own auth must not be called broken for saying 401), so
+// a 500 would pass. Nothing listening is the only honest failure.
+//
+// `main` is untouched. Never merge this.
+console.error('hello-node (branch `broken`): exiting immediately on purpose — '
+  + 'this commit exists to exercise ToolHarbor automatic rollback.');
+process.exit(1);
+
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 
 async function boot() {
